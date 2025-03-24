@@ -2,7 +2,6 @@ package com.att.tdp.popcorn_palace.Model;
 
 import com.att.tdp.popcorn_palace.Util.Exceptions.InternalServerException;
 import jakarta.persistence.*;
-import lombok.*;
 import java.util.UUID;
 
 @Entity

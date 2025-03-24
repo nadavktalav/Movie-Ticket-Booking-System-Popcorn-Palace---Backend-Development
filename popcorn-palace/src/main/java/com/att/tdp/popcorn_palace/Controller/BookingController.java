@@ -36,7 +36,6 @@ public class BookingController {
         }
 
         catch (InternalServerException | ResourceNotFoundException | IllegalArgumentException e){
-//            e.printStackTrace();
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 
         }

@@ -90,7 +90,7 @@ public class MovieServiceTest {
         InternalServerException exception = assertThrows(InternalServerException.class, () -> {
             movieService.getMovieByTitle("Nonexistent Movie");
         });
-        assertEquals("Internal Error while getting movie with title: Nonexistent Movie", exception.getMessage());
+        assertEquals("Movie not found", exception.getMessage());
         verify(movieRepository, times(1)).findMovieByTitle("Nonexistent Movie");
     }
 
@@ -126,11 +126,11 @@ public class MovieServiceTest {
 
         MovieRequest updatedRequest = new MovieRequest("Updated Movie", "Comedy", 150, 5.0, 2024);
 
-        Movie result = movieService.updateMovie("Test Movie", updatedRequest);
+        assertThrows(InternalServerException.class,
+                ()-> {
+                    movieService.updateMovie("Test Movie", updatedRequest);
+                });
 
-        assertNotNull(result);
-        verify(movieRepository, times(1)).findMovieByTitle("Test Movie");
-        verify(movieRepository, times(1)).save(any(Movie.class));
     }
 
     @Test

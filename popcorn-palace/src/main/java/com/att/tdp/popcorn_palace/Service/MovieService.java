@@ -38,12 +38,16 @@ public class MovieService {
     public Movie getMovieByTitle(String title) {
         try {
             Optional<Movie> optionalMovie= movieRepository.findMovieByTitle(title);
+            // check if movie exist
             if (optionalMovie.isEmpty()){
                 throw new ResourceNotFoundException("Movie not found");
             }
             else{
                 return optionalMovie.get();
             }
+        }
+        catch (ResourceNotFoundException e){
+            throw new InternalServerException(e.getMessage());
         }
         catch(Exception e){
             throw new InternalServerException("Internal Error while getting movie with title: " + title);
@@ -53,6 +57,7 @@ public class MovieService {
     public Movie addMovie(MovieRequest movieRequest) {
         try {
             Movie movie = new Movie(movieRequest);
+            // check if movie already exist
             if (movieRepository.findMovieByTitle(movieRequest.getTitle()).isPresent()){
                 throw new InternalServerException("Movie with title: " + movie.getTitle() + " already exists");
             }
@@ -66,16 +71,23 @@ public class MovieService {
         }
     }
 
-    public Movie updateMovie(String movieTitle, MovieRequest movieRequest) {
+    public Movie updateMovie(String movieTitle, MovieRequest movieRequest) throws InternalServerException{
         try {
-
+            // update each movie field
+            if (movieRepository.findMovieByTitle(movieRequest.getTitle()).isPresent()){
+                throw new InternalServerException("Movie with title: " + movieRequest.getTitle() + " already exists");
+            }
             Movie movie = getMovieByTitle(movieTitle);
             movie.setDuration(movieRequest.getDuration());
             movie.setGenre(movieRequest.getGenre());
             movie.setRating(movieRequest.getRating());
             movie.setReleaseYear(movieRequest.getReleaseYear());
             movie.setTitle(movieRequest.getTitle());
+            // error if title not exist
             return movieRepository.save(movie);
+        }
+        catch (InternalServerException e){
+            throw e;
         }
         catch (Exception e){
             throw new InternalServerException("Internal Error while adding movie");

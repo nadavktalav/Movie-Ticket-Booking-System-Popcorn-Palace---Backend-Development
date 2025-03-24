@@ -15,7 +15,5 @@ public interface BookingRepository extends JpaRepository<Booking, String> {
     @Query("SELECT CASE WHEN COUNT(b) > 0 THEN true ELSE false END FROM Booking b WHERE b.seatNumber = :seatNumber AND b.showtime.id = :showtimeId")
     boolean existsBookingBySeatNumberAndShowtime(@Param("seatNumber") int seatNumber, @Param("showtimeId") long showtimeId);
 
-//    @Query("SELECT s FROM Showtime s WHERE s.id = :showtimeId")
-//    Optional<Showtime> lockShowtimeById(@Param("showtimeId") long showtimeId);
 }
 
