@@ -3,7 +3,6 @@ package com.att.tdp.popcorn_palace.Model;
 import com.att.tdp.popcorn_palace.Util.Requests.MovieRequest;
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List;
 
 @Entity
 @Table(name = "movies")

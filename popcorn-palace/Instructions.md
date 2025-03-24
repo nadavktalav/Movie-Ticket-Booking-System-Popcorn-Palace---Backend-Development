@@ -6,19 +6,7 @@ This document provides step-by-step instructions to set up, build, and run the p
 
 Before setting up the project, ensure you have the following installed on your machine:
 
-- **Java 21** (The project uses Java 21, so make sure you have a compatible version of JDK installed)
-    - Download from [OpenJDK](https://openjdk.java.net/) or use a package manager.
-    - Verify installation with the command:
-      ```bash
-      java -version
-      ```
 
-- **Maven** (for dependency management and building the project)
-    - Download from [Maven](https://maven.apache.org/download.cgi).
-    - Verify installation with the command:
-      ```bash
-      mvn -v
-      ```
 
 - **Docker** (if you're using Docker for PostgreSQL or other services)
     - Download from [Docker](https://www.docker.com/products/docker-desktop).
@@ -40,25 +28,22 @@ cd Movie-Ticket-Booking-System-Popcorn-Palace---Backend-Development
 cd popcorn-palace
 ```
 
-### 2. Install Project Dependencies
-
-The project uses Maven for dependency management. To install the required dependencies, run the following command:
-
-```bash
-mvn install
-```
-
 
 
 ### Running with Docker
 
 The project includes Docker and Docker Compose configuration for easy setup:
 
-
-1. Use Docker Compose to start both the database and application:
+1. Build API Docker image:
 
 ```bash
-docker-compose up --build
+docker build -t popcorn-palace .
+```
+
+2. Use Docker Compose to start both the database and application:
+
+```bash
+docker-compose up
 ```
 
 
@@ -90,13 +75,8 @@ The application uses the following main entities:
 
 - `POST /bookings` - Book a ticket 
 
-
 ## Testing
-
-The project includes unit tests and integration tests. To run the tests:
-
-```bash
-./mvnw test
-```
+Directory: `src/test/java/com/att/tdp/popcorn_palace/UnitTest`
+As part of the Docker image build , the compilation and tests run.
 
 

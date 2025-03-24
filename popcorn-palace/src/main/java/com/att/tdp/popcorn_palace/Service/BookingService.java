@@ -43,7 +43,7 @@ public class BookingService {
                 throw new InternalServerException("Showtime already ended");
             }
 
-            // Check if the seat is already booked (using unique constraint in the database)
+            // Check if the seat is already booked
             if (bookingRepository.existsBookingBySeatNumberAndShowtime(seatNumber, showTimeId)) {
                 throw new InternalServerException("Seat is already booked for this showtime");
             }

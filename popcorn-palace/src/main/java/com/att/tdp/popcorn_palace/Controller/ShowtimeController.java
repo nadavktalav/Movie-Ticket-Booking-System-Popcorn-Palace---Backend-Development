@@ -1,20 +1,15 @@
 package com.att.tdp.popcorn_palace.Controller;
 
-import com.att.tdp.popcorn_palace.Model.Movie;
 import com.att.tdp.popcorn_palace.Model.Showtime;
-import com.att.tdp.popcorn_palace.Repository.ShowtimeRepository;
-import com.att.tdp.popcorn_palace.Service.MovieService;
 import com.att.tdp.popcorn_palace.Service.ShowtimeService;
 import com.att.tdp.popcorn_palace.Util.Exceptions.InternalServerException;
 import com.att.tdp.popcorn_palace.Util.Exceptions.ResourceNotFoundException;
-import com.att.tdp.popcorn_palace.Util.Requests.MovieRequest;
 import com.att.tdp.popcorn_palace.Util.Requests.ShowtimeRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
